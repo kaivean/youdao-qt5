@@ -1,5 +1,6 @@
 #ifndef DIALOG_H
 #define DIALOG_H
+
 #include <QtWidgets>
 #include "tipdia.h"
 #include "resultdia.h"
@@ -8,6 +9,7 @@
 
 #include <QtWebKitWidgets/QWebFrame>
 #include <QtWebKit/QWebElement>
+
 
 
 namespace Ui {

@@ -1,7 +1,9 @@
 #include "dialog.h"
 #include "ui_dialog.h"
 
+
 #include <QtWidgets>
+
 
 
 
@@ -26,7 +28,9 @@ Dialog::Dialog(QWidget *parent) :
     clip=QApplication::clipboard();
     process=NULL;
 
+
    // ui->webView->hide();
+
 
     page=  ui->webView->page();
     connect(page,SIGNAL(loadFinished(bool)),this,SLOT(pageLoadfinished()));
@@ -72,8 +76,10 @@ void Dialog::openTranMode()
         connect(clip,SIGNAL(selectionChanged()),this,SLOT(HandleSelection()));
         process=new QProcess(this);
         QString file=QCoreApplication::applicationDirPath ();//获取当前应用程序路径
+
         file=file +"/record/record";
         qDebug() << file;
+
         process->setProcessChannelMode(QProcess::MergedChannels);
         connect(process, SIGNAL(readyReadStandardOutput()), this, SLOT(redFromStdOut()));
         process->start(file);
@@ -143,8 +149,10 @@ void Dialog::startMoreTranslate()
     QString url="http://dict.baidu.com/s?wd=" +curKey;
     QUrl u(url);
    // ui->webView->load(u);
+
     qDebug("staert");
     QWebFrame* f=prePage->mainFrame();
+
 
     f->load(url);
 
@@ -180,10 +188,12 @@ void Dialog::HandleData()    //用于复制模式
 
 void Dialog::redFromStdOut() //当record进程每次返回鼠标状态时调用
 {
+
      // qDebug() << "mousedown";
      QString d=QString(process->readAllStandardOutput());
      if(d=="0") { //此时鼠标按下
          //qDebug() << "mousedown";
+
          IsSeclecting=0; //鼠标按下时 并没有选择文本   当鼠标松开时才察看是否有选择文本
          MouseState=0;
 
@@ -226,6 +236,7 @@ void Dialog::on_pushButton_clicked()
 
 
 void Dialog::pageLoadfinished()//
+
 {
 
     qDebug()<< "finish";

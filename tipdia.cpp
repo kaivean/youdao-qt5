@@ -1,5 +1,7 @@
 #include "tipdia.h"
+
 #include <QtWidgets>
+
 
 
 

@@ -8,8 +8,10 @@ QT       += core gui widgets network  webkitwidgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+
 TARGET = openyoudao
 TEMPLATE = app
+
 
 
 SOURCES += main.cpp\
@@ -23,6 +25,7 @@ HEADERS  += dialog.h \
     resultdia.h
 
 
+
 FORMS    += dialog.ui \
     resultdia.ui
 
@@ -32,4 +35,5 @@ RESOURCES += \
 
 OTHER_FILES += \
     README
+
 

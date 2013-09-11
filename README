@@ -1,2 +1,4 @@
+
 openyoudao-基于有道接口的翻译软件
+
 注：需要将record放入和openyoudao执行程序同目录 因为主程序要调用它

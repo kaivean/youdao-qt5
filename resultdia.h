@@ -2,8 +2,10 @@
 #define RESULTDIA_H
 
 
+
 #include <QtGui>
 #include <QtWidgets>
+
 #include <QtNetwork>
 
 namespace Ui {

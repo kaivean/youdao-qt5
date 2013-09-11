@@ -2,9 +2,11 @@
 #define TIPDIA_H
 
 
+
 #include <QtCore>
 #include <QtGui>
 #include <QtWidgets>
+
 
 #include <QtNetwork>
 
