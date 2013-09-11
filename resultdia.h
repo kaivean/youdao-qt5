@@ -2,7 +2,6 @@
 #define RESULTDIA_H
 
 
-
 #include <QtGui>
 #include <QtWidgets>
 
@@ -28,10 +27,6 @@ public:
     void startTrans(QString);
 
     void getTrans();
-
-
-
-
 
 private:
     Ui::resultDia *ui;

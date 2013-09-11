@@ -3,8 +3,6 @@
 #include <QtWidgets>
 
 
-
-
 tipDia::tipDia(QWidget *parent) :
     QDialog(parent)
 {

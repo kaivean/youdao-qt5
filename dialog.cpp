@@ -1,15 +1,9 @@
 #include "dialog.h"
 #include "ui_dialog.h"
 
-
 #include <QtWidgets>
 
-
-
-
-
-Dialog::Dialog(QWidget *parent) :
-    QDialog(parent),
+Dialog::Dialog(QWidget *parent) : QDialog(parent),
     ui(new Ui::Dialog)
 {
     ui->setupUi(this);
@@ -28,10 +22,6 @@ Dialog::Dialog(QWidget *parent) :
     clip=QApplication::clipboard();
     process=NULL;
 
-
-   // ui->webView->hide();
-
-
     page=  ui->webView->page();
     connect(page,SIGNAL(loadFinished(bool)),this,SLOT(pageLoadfinished()));
 
@@ -43,7 +33,7 @@ Dialog::Dialog(QWidget *parent) :
     QWebFrame* f=prePage->mainFrame();
     connect(f,SIGNAL(loadFinished(bool)),this,SLOT(pageLoadfinished()));
 
-    openTranMode();
+    openTranMode();  //打开翻译模式
 
 }
 
@@ -54,7 +44,6 @@ Dialog::~Dialog()
 
 void Dialog::closeEvent(QCloseEvent *)
 {
-
 
     if(curResultDia) delete curResultDia;
 
@@ -97,8 +86,6 @@ void Dialog::openTranMode()
 
 }
 
-
-
 void Dialog::startTranslate()
 {
 
@@ -110,8 +97,7 @@ void Dialog::startTranslate()
         return ;
       }
       if(curResultDia){
-        //    curResultDia->key=curText;
-          qDebug("old resultdia");
+
         //  curResultDia->hide();
           if(curResultDia->isMinimized()){
                qDebug()<< "showmini";
@@ -120,19 +106,14 @@ void Dialog::startTranslate()
           if(curResultDia->isHidden())
           {    curResultDia->show();
               qDebug()<< "show";}
-       qDebug() <<curResultDia->statusTip();
-       // curResultDia->activateWindow();
-        //  activateWindow();
-       //  curResultDia->setWindowFlags(Qt::WindowStaysOnTopHint);
+         qDebug() <<curResultDia->statusTip();
 
           curResultDia->startTrans(curKey);
-
 
       }
       else{
           curResultDia=new resultDia();
           connect(curResultDia,SIGNAL(RequestMoreTranslate()),this,SLOT(startMoreTranslate()));
-          qDebug("new resultdia");
           curResultDia->show();
           curResultDia->startTrans(curKey);
       }
@@ -149,15 +130,11 @@ void Dialog::startMoreTranslate()
     QString url="http://dict.baidu.com/s?wd=" +curKey;
     QUrl u(url);
    // ui->webView->load(u);
-
-    qDebug("staert");
     QWebFrame* f=prePage->mainFrame();
-
 
     f->load(url);
 
 }
-
 
 void Dialog::HandleSelection()  //用于选择模式   当selection改变时调用   与redFromStdOut()一起实现划词功能
 {
@@ -189,7 +166,7 @@ void Dialog::HandleData()    //用于复制模式
 void Dialog::redFromStdOut() //当record进程每次返回鼠标状态时调用
 {
 
-     // qDebug() << "mousedown";
+
      QString d=QString(process->readAllStandardOutput());
      if(d=="0") { //此时鼠标按下
          //qDebug() << "mousedown";
@@ -234,22 +211,14 @@ void Dialog::on_pushButton_clicked()
 
 }
 
-
+// 页面加载完成
 void Dialog::pageLoadfinished()//
 
 {
 
     qDebug()<< "finish";
 
-  //  QFile file("a.js");
- //   if(!file.open(QFile::ReadOnly)){
-
-  //  }
-  //  QString jsStr=QString::fromUtf8(file.readAll());
-    // ui->webView->hide();
      QWebFrame *frame=prePage->mainFrame();
-   //  frame->evaluateJavaScript(jsStr);
-   //  qDebug()<< frame->contentsSize();
 
      QWebElement doc = frame->documentElement();
      QWebElement head = doc.findFirst("#head");
@@ -268,9 +237,6 @@ void Dialog::pageLoadfinished()//
      ui->webView->setPage(prePage);///不直接使用webview的page对象    先处理page再显示
 
 }
-
-
-
 
 
 void Dialog::on_rMode_clicked()

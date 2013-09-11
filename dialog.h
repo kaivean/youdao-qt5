@@ -1,23 +1,18 @@
 #ifndef DIALOG_H
 #define DIALOG_H
 
-#include <QtWidgets>
 #include "tipdia.h"
 #include "resultdia.h"
 
+#include <QtWidgets>
 #include <QtWebKitWidgets/QWebPage>
-
 #include <QtWebKitWidgets/QWebFrame>
 #include <QtWebKit/QWebElement>
-
 
 
 namespace Ui {
 class Dialog;
 }
-
-
-
 
 class Dialog : public QDialog
 {

@@ -3,30 +3,17 @@
 #include "dialog.h"
 
 
-
 resultDia::resultDia(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::resultDia)
 {
     ui->setupUi(this);
-    //使Ui可自适应父窗口大小
-    //    QVBoxLayout* mainLayout = new QVBoxLayout;
-     //   mainLayout->addWidget(ui->verticalLayoutWidget);
-   //     setLayout(mainLayout);
-   // QLabel *l1=new QLabel(this);
-   // l1->setText("<a style='color:red;background-image:url(:/ok.png)'> sdf  </a>");
-
-    //QPushButton *p1 =new QPushButton("AF");
-   // p1->setMaximumSize(20,20);
-  //  ui->hl1->addWidget(p1); ui->hl1->addWidget(l1);
     ui->tKey->setTextInteractionFlags(Qt::TextSelectableByMouse);
     manager = new QNetworkAccessManager(this);  //新建QNetworkAccessManager对象
     connect(manager,SIGNAL(finished(QNetworkReply*)),this,SLOT(replyFinished(QNetworkReply*)));  //关联信号和槽
-   // key= ((Dialog *)parent)->curText;
 
-  //  setAttribute(Qt::WA_DeleteOnClose);
-  // setWindowFlags(Qt::WindowStaysOnTopHint);
- //   setWindowFlags(windowFlags() &~ (Qt::WindowMaximizeButtonHint));
+
+
     setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowCloseButtonHint);
 }
 
@@ -56,11 +43,6 @@ void resultDia::startTrans(QString key)
 
 void resultDia::getTrans()
 {
-
-
-
-
-
 
 }
 
@@ -92,17 +74,6 @@ void resultDia::readDict()
 
                       qDebug()<<"paragraph:  "<< reader.text();  //ps
                       str+=reader.text().toString()+"\n";
-//                    QPushButton *p=new QPushButton("");
-//                    p->setIcon(QIcon(":/images/sound.png"));
-//                    p->setWindowFlags(Qt::FramelessWindowHint);
-//                    p->setMaximumSize(25,25);
-
-//                    ui->hl1->addWidget(p);
-//                    QString s="<span style='backgound-color'> [%1] </span>";
-//                     s=s.arg(reader.text().toString());
-//                    QLabel* l=new QLabel(s,this);
-//                    ui->hl1->addWidget(l);
-//                    ui->hl1->addStretch();
                 }
 
             }
@@ -153,7 +124,6 @@ void resultDia::readDict()
 
       }
       else  ui->tTrans->setText(str);
-   // ui->tTrans->setText( ui->tTrans->text().remove(-1,1));
 
 }
 
@@ -162,9 +132,6 @@ void resultDia::replyFinished(QNetworkReply *reply)
 
    // QTextCodec *codec = QTextCodec::codecForName("utf8");
    // QString all = codec->toUnicode(reply->readAll());
-
-  // qDebug()<<all;
-   // reader.setDevice(&file);
 
     reader.addData(reply->readAll());
 
